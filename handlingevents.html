@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<body>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<style type="text/css">
+	table,th,td{
+		border: 1px solid black ;
+		padding: 5px;
+	}
+	table
+	{
+		border-collapse: collapse;
+	}
+th{
+	text-align: left;
+}
+</style>
+
+
+<div ng-controller="myCtrl">
+<table>
+	<thead>
+	<tr>
+		<th>name</th>
+		<th>likes</th>
+		<th>dislikes</th>
+		<th>like</th>
+		<th>dislike</th>
+		<th>reset</th>
+		<tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="technology in technologies">
+			<td>{{technology.name}}</td>
+			<td>{{technology.likes}}</td>
+			<td>{{technology.dislikes}}</td>
+			<td><input type="button" value="likes" ng-click="incrementLikes(technology)"></td>
+			<td><input type="button" value="dislikes" ng-click="incrementDislikes(technology)"></td>
+			<td><input type="button" value="reset" ng-click="reset(technology)"></td>
+
+
+		</tr>
+	</tbody>
+</table>
+</div>
+</body>
+<script>
+	var app=angular.module("myApp",[]);
+	app.controller("myCtrl",function($scope)
+	{
+		var technologies=[
+		{name:'c#',likes:0,dislikes:0},
+		{name:'angularjs',likes:0,dislikes:0},
+		{name:'bootstap',likes:0,dislikes:0},
+		{name:'sql',likes:0,dislikes:0}
+		]
+		$scope.technologies=technologies;
+		$scope.incrementLikes=function(technology){
+			technology.likes++;
+		}
+		$scope.incrementDislikes=function(technology){
+			technology.dislikes++;
+		}
+		$scope.reset=function(technology){
+			technology.likes=0;
+			technology.dislikes=0;
+		}
+
+	});
+</script>
+</html>
